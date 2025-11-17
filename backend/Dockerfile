@@ -1,9 +1,14 @@
-# Build the Go backend and create a small runtime image
 FROM golang:1.20-alpine AS build
 WORKDIR /app
-COPY go.mod ./
+
+COPY go.mod go.sum ./
 RUN go mod download
+
 COPY . .
+
+# Ajout important : go mod tidy pour générer go.sum si absent
+RUN go mod tidy
+
 RUN go build -o payroll-api
 
 FROM alpine:3.17

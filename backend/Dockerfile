@@ -14,7 +14,7 @@ RUN go build -o payroll-api
 FROM alpine:3.17
 WORKDIR /app
 COPY --from=build /app/payroll-api .
-EXPOSE 8080
+EXPOSE 10000
 CMD ["./payroll-api"]
 
-EXPOSE 10000
+

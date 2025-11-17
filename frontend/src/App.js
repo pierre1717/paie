@@ -11,7 +11,7 @@ export default function App() {
 
   useEffect(() => {
     // Fetch employees from backend API
-    fetch(`${API_URL}/employees`)
+    fetch(`${API_URL}/api/employees`)
       .then(res => {
         if (!res.ok) throw new Error('Network response was not ok');
         return res.json();

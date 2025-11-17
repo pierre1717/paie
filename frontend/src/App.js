@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 // Simple React app that reads REACT_APP_API_URL from environment.
 // During development, .env.development sets REACT_APP_API_URL to http://localhost:8080
 // In production it should be set to https://api.monsite.com
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:10000';
+const API_URL = process.env.REACT_APP_API_URL || 'https://paie-xj06.onrender.com';
 
 export default function App() {
   const [employees, setEmployees] = useState([]);

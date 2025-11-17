@@ -4,7 +4,7 @@ services:
     build: ./backend
     container_name: payroll-backend
     ports:
-      - "8080:10000"
+      - "8080:8080"
     restart: unless-stopped
 
   frontend:
@@ -13,7 +13,7 @@ services:
     ports:
       - "3000:80" # serve built React on container port 80 mapped to host 3000
     environment:
-      - REACT_APP_API_URL=http://backend:10000
+      - REACT_APP_API_URL=https://paie-xj06.onrender.com
     depends_on:
       - backend
 

@@ -16,3 +16,5 @@ WORKDIR /app
 COPY --from=build /app/payroll-api .
 EXPOSE 8080
 CMD ["./payroll-api"]
+
+EXPOSE 10000

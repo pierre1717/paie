@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    container_name: payroll-backend
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: payroll-frontend
+    ports:
+      - "3000:80" # serve built React on container port 80 mapped to host 3000
+    environment:
+      - REACT_APP_API_URL=http://backend:8080
+    depends_on:
+      - backend
+
+# In this compose setup, the frontend uses the internal Docker service name `backend`
+# to call the API: http://backend:8080

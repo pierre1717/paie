@@ -1,0 +1,40 @@
+name: CI-CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build backend
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+      - name: Build Backend
+        working-directory: backend
+        run: |
+          go mod download
+          go build -v -o payroll-api
+
+      # Build frontend
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Build Frontend
+        working-directory: frontend
+        run: |
+          npm install
+          npm run build
+
+      # Optionally build Docker images and push to registry (requires secrets)
+      - name: Build Docker images
+        run: |
+          docker build -t ${{ github.repository }}-backend:latest ./backend
+          docker build -t ${{ github.repository }}-frontend:latest ./frontend
+
